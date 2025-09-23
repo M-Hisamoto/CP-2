@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Livros</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #f4f4f4; }
+        .actions form { display: inline; }
+        .badge { padding: 2px 6px; border-radius: 4px; font-size: 12px; }
+        .disp { background: #e6ffed; border: 1px solid #34d058; }
+        .emp { background: #ffeef0; border: 1px solid #d73a49; }
+        .flash { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .sucesso { background: #e6ffed; border: 1px solid #34d058; }
+        .erro { background: #ffeef0; border: 1px solid #d73a49; }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/usuarios}">Usuários</a>
+    <a th:href="@{/emprestimos}">Empréstimos</a>
+</nav>
+
+<h1 th:text="${apenasDisponiveis} ? 'Livros Disponíveis' : 'Todos os Livros'">Livros</h1>
+
+<div th:if="${sucesso}" class="flash sucesso" th:text="${sucesso}"></div>
+<div th:if="${erro}" class="flash erro" th:text="${erro}"></div>
+
+<p>
+    <a th:href="@{/livros/novo}">Cadastrar novo livro</a> |
+    <a th:href="@{/livros}">Ver todos</a> |
+    <a th:href="@{/livros/disponiveis}">Ver disponíveis</a>
+</p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Título</th>
+        <th>Autor</th>
+        <th>Ano</th>
+        <th>Status</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="livro : ${livros}">
+        <td th:text="${livro.id}">1</td>
+        <td th:text="${livro.titulo}">Título</td>
+        <td th:text="${livro.autor}">Autor</td>
+        <td th:text="${livro.anoPublicacao}">2024</td>
+        <td>
+            <span th:classappend="${livro.status.name() == 'DISPONIVEL'} ? 'badge disp' : 'badge emp'"
+                  th:text="${livro.status}">DISPONIVEL</span>
+        </td>
+        <td class="actions">
+            <a th:href="@{'/livros/' + ${livro.id} + '/editar'}">Editar</a>
+            <form th:action="@{'/livros/' + ${livro.id} + '/excluir'}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir?');">
+                <button type="submit">Excluir</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Empréstimos</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        table { border-collapse: collapse; width: 100%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #f4f4f4; }
+        .flash { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .sucesso { background: #e6ffed; border: 1px solid #34d058; }
+        .erro { background: #ffeef0; border: 1px solid #d73a49; }
+        .actions form { display: inline; }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/usuarios}">Usuários</a>
+    <a th:href="@{/emprestimos}">Empréstimos</a>
+</nav>
+
+<h1>Empréstimos</h1>
+
+<div th:if="${sucesso}" class="flash sucesso" th:text="${sucesso}"></div>
+<div th:if="${erro}" class="flash erro" th:text="${erro}"></div>
+
+<p><a th:href="@{/emprestimos/novo}">Registrar novo empréstimo</a></p>
+
+<h2>Empréstimos Ativos</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Livro</th>
+        <th>Usuário</th>
+        <th>Retirada</th>
+        <th>Previsto p/ Devolução</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${emprestimosAtivos}">
+        <td th:text="${e.id}">1</td>
+        <td th:text="${e.livro.titulo}">Livro</td>
+        <td th:text="${e.usuario.nome}">Usuário</td>
+        <td th:text="${e.dataRetirada}">2025-09-18</td>
+        <td th:text="${e.dataPrevistaDevolucao}">2025-09-25</td>
+        <td class="actions">
+            <form th:action="@{'/emprestimos/' + ${e.id} + '/devolver'}" method="post"
+                  onsubmit="return confirm('Confirmar devolução?');">
+                <button type="submit">Devolver</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Todos os Empréstimos</h2>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Livro</th>
+        <th>Usuário</th>
+        <th>Retirada</th>
+        <th>Previsto</th>
+        <th>Devolução</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="e : ${todosEmprestimos}">
+        <td th:text="${e.id}">1</td>
+        <td th:text="${e.livro.titulo}">Livro</td>
+        <td th:text="${e.usuario.nome}">Usuário</td>
+        <td th:text="${e.dataRetirada}">2025-09-18</td>
+        <td th:text="${e.dataPrevistaDevolucao}">2025-09-25</td>
+        <td th:text="${e.dataDevolucao}">-</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
