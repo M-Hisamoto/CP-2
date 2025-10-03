@@ -1,0 +1,12 @@
+com\hisamoto\biblioteca\model\LivroStatus.class
+com\hisamoto\biblioteca\repository\EmprestimoRepository.class
+com\hisamoto\biblioteca\controller\HomeController.class
+com\hisamoto\biblioteca\repository\LivroRepository.class
+com\hisamoto\biblioteca\repository\UsuarioRepository.class
+com\hisamoto\biblioteca\BibliotecaApplication.class
+com\hisamoto\biblioteca\controller\LivroController.class
+com\hisamoto\biblioteca\controller\EmprestimoController.class
+com\hisamoto\biblioteca\controller\UsuarioController.class
+com\hisamoto\biblioteca\model\Usuario.class
+com\hisamoto\biblioteca\model\Emprestimo.class
+com\hisamoto\biblioteca\model\Livro.class

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Cadastro de Livro</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        .error { color: #d73a49; font-size: 0.9em; }
+        label { display: block; margin-top: 8px; }
+        input { width: 300px; padding: 6px; }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/livros}">Voltar</a>
+</nav>
+
+<h1 th:text="${#strings.isEmpty(${livro.id}) ? 'Novo Livro' : 'Editar Livro'}">Livro</h1>
+
+<form th:action="${#strings.isEmpty(livro.id) ? @{/livros} : @{'/livros/' + ${livro.id} + '/editar'}}"
+      th:object="${livro}" method="post">
+    <label for="titulo">Título</label>
+    <input type="text" id="titulo" th:field="*{titulo}" required/>
+    <div class="error" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></div>
+
+    <label for="autor">Autor</label>
+    <input type="text" id="autor" th:field="*{autor}" required/>
+    <div class="error" th:if="${#fields.hasErrors('autor')}" th:errors="*{autor}"></div>
+
+    <label for="anoPublicacao">Ano de Publicação</label>
+    <input type="number" id="anoPublicacao" th:field="*{anoPublicacao}" min="0" required/>
+    <div class="error" th:if="${#fields.hasErrors('anoPublicacao')}" th:errors="*{anoPublicacao}"></div>
+
+    <p><button type="submit">Salvar</button></p>
+</form>
+
+</body>
+</html>

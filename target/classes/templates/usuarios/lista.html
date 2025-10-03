@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Usuários</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #ddd; padding: 8px; }
+        th { background: #f4f4f4; }
+        .flash { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .sucesso { background: #e6ffed; border: 1px solid #34d058; }
+        .erro { background: #ffeef0; border: 1px solid #d73a49; }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/usuarios}">Usuários</a>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/emprestimos}">Empréstimos</a>
+</nav>
+
+<h1>Usuários</h1>
+
+<div th:if="${sucesso}" class="flash sucesso" th:text="${sucesso}"></div>
+<div th:if="${erro}" class="flash erro" th:text="${erro}"></div>
+
+<p><a th:href="@{/usuarios/novo}">Cadastrar novo usuário</a></p>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nome</th>
+        <th>E-mail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="u : ${usuarios}">
+        <td th:text="${u.id}">1</td>
+        <td th:text="${u.nome}">Nome</td>
+        <td th:text="${u.email}">email@exemplo.com</td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

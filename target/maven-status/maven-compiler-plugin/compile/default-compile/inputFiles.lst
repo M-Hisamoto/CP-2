@@ -1,0 +1,12 @@
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\BibliotecaApplication.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\controller\EmprestimoController.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\controller\HomeController.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\controller\LivroController.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\controller\UsuarioController.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\model\Emprestimo.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\model\Livro.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\model\LivroStatus.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\model\Usuario.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\repository\EmprestimoRepository.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\repository\LivroRepository.java
+C:\Users\Misael\IdeaProjects\CP-2\src\main\java\com\hisamoto\biblioteca\repository\UsuarioRepository.java

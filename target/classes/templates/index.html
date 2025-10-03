@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Biblioteca Comunitária</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}" />
+    <style>
+        body { font-family: Arial, sans-serif; margin: 24px; }
+        nav a { margin-right: 12px; }
+        .flash { padding: 10px; margin: 10px 0; border-radius: 4px; }
+        .sucesso { background: #e6ffed; border: 1px solid #34d058; }
+        .erro { background: #ffeef0; border: 1px solid #d73a49; }
+    </style>
+</head>
+<body>
+<nav>
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/livros}">Livros</a>
+    <a th:href="@{/usuarios}">Usuários</a>
+    <a th:href="@{/emprestimos}">Empréstimos</a>
+</nav>
+
+<h1>Biblioteca Comunitária</h1>
+<p>Gerencie livros, usuários e empréstimos.</p>
+<ul>
+    <li><a th:href="@{/livros}">Listar livros</a> | <a th:href="@{/livros/novo}">Cadastrar livro</a></li>
+    <li><a th:href="@{/usuarios}">Listar usuários</a> | <a th:href="@{/usuarios/novo}">Cadastrar usuário</a></li>
+    <li><a th:href="@{/emprestimos}">Listar empréstimos</a> | <a th:href="@{/emprestimos/novo}">Registrar empréstimo</a></li>
+</ul>
+
+</body>
+</html>
