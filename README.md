@@ -1,2 +1,2 @@
 # CP-2
-Biblioteca Comunitária - Spring Boot + MVC + JPA + Thymeleaf
+Biblioteca Comunitaria - Spring Boot + MVC + JPA + Thymeleaf
