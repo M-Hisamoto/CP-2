@@ -3,6 +3,7 @@ package com.hisamoto.biblioteca.controller;
 import com.hisamoto.biblioteca.model.Emprestimo;
 import com.hisamoto.biblioteca.model.Livro;
 import com.hisamoto.biblioteca.model.LivroStatus;
+import com.hisamoto.biblioteca.model.Usuario;
 import com.hisamoto.biblioteca.repository.EmprestimoRepository;
 import com.hisamoto.biblioteca.repository.LivroRepository;
 import com.hisamoto.biblioteca.repository.UsuarioRepository;
@@ -39,7 +40,10 @@ public class EmprestimoController {
 
     @GetMapping("/novo")
     public String novoForm(Model model) {
-        model.addAttribute("emprestimo", new Emprestimo());
+        Emprestimo emp = new Emprestimo();
+        emp.setLivro(new Livro());     // evita null ao bindar *{livro.id}
+        emp.setUsuario(new Usuario()); // evita null ao bindar *{usuario.id}
+        model.addAttribute("emprestimo", emp);
         model.addAttribute("livrosDisponiveis", livroRepository.findByStatus(LivroStatus.DISPONIVEL));
         model.addAttribute("usuarios", usuarioRepository.findAll());
         return "emprestimos/form";

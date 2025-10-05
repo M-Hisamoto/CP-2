@@ -8,6 +8,7 @@
         .error { color: #d73a49; font-size: 0.9em; }
         label { display: block; margin-top: 8px; }
         select, input { width: 320px; padding: 6px; }
+        .hint { font-size: 0.85em; color: #555; margin-top: 4px; }
     </style>
 </head>
 <body>
@@ -19,22 +20,27 @@
 <h1>Novo Empréstimo</h1>
 
 <form th:action="@{/emprestimos}" th:object="${emprestimo}" method="post">
+
     <label for="livro">Livro</label>
     <select id="livro" th:field="*{livro.id}" required>
-        <option value="" disabled selected>Selecione um livro</option>
+        <option value="" disabled
+                th:selected="*{livro.id} == null">Selecione um livro</option>
         <option th:each="l : ${livrosDisponiveis}"
                 th:value="${l.id}"
                 th:text="${l.titulo + ' - ' + l.autor}">Livro</option>
     </select>
+    <div class="hint" th:if="${#lists.isEmpty(livrosDisponiveis)}">Nenhum livro disponível. Cadastre ou devolva um livro.</div>
     <div class="error" th:if="${#fields.hasErrors('livro')}" th:errors="*{livro}"></div>
 
     <label for="usuario">Usuário</label>
     <select id="usuario" th:field="*{usuario.id}" required>
-        <option value="" disabled selected>Selecione um usuário</option>
+        <option value="" disabled
+                th:selected="*{usuario.id} == null">Selecione um usuário</option>
         <option th:each="u : ${usuarios}"
                 th:value="${u.id}"
                 th:text="${u.nome + ' (' + u.email + ')'}">Usuário</option>
     </select>
+    <div class="hint" th:if="${#lists.isEmpty(usuarios)}">Nenhum usuário cadastrado.</div>
     <div class="error" th:if="${#fields.hasErrors('usuario')}" th:errors="*{usuario}"></div>
 
     <label for="dataRetirada">Data de Retirada</label>
@@ -45,7 +51,10 @@
     <input type="date" id="dataPrevistaDevolucao" th:field="*{dataPrevistaDevolucao}" required/>
     <div class="error" th:if="${#fields.hasErrors('dataPrevistaDevolucao')}" th:errors="*{dataPrevistaDevolucao}"></div>
 
-    <div class="error" th:if="${#fields.hasGlobalErrors()}" th:each="ge : ${#fields.globalErrors()}" th:text="${ge}"></div>
+    <!-- Erros globais -->
+    <div th:if="${#fields.hasGlobalErrors()}">
+        <div class="error" th:each="ge : ${#fields.globalErrors()}" th:text="${ge}"></div>
+    </div>
 
     <p><button type="submit">Salvar</button></p>
 </form>

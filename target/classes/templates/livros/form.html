@@ -2,7 +2,7 @@
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Cadastro de Livro</title>
+    <title th:text="${livro.id} == null ? 'Novo Livro' : 'Editar Livro'">Livro</title>
     <style>
         body { font-family: Arial, sans-serif; margin: 24px; }
         .error { color: #d73a49; font-size: 0.9em; }
@@ -16,9 +16,9 @@
     <a th:href="@{/livros}">Voltar</a>
 </nav>
 
-<h1 th:text="${#strings.isEmpty(${livro.id}) ? 'Novo Livro' : 'Editar Livro'}">Livro</h1>
+<h1 th:text="${livro.id} == null ? 'Novo Livro' : 'Editar Livro'">Livro</h1>
 
-<form th:action="${#strings.isEmpty(livro.id) ? @{/livros} : @{'/livros/' + ${livro.id} + '/editar'}}"
+<form th:action="${livro.id} == null ? @{/livros} : @{/livros/{id}/editar(id=${livro.id})}"
       th:object="${livro}" method="post">
     <label for="titulo">Título</label>
     <input type="text" id="titulo" th:field="*{titulo}" required/>
@@ -32,7 +32,9 @@
     <input type="number" id="anoPublicacao" th:field="*{anoPublicacao}" min="0" required/>
     <div class="error" th:if="${#fields.hasErrors('anoPublicacao')}" th:errors="*{anoPublicacao}"></div>
 
-    <p><button type="submit">Salvar</button></p>
+    <p>
+        <button type="submit" th:text="${livro.id} == null ? 'Salvar' : 'Atualizar'">Salvar</button>
+    </p>
 </form>
 
 </body>
